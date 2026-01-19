@@ -120,17 +120,7 @@ L'application est structurée en 7 classes principales :
 6. **GraphGenerator** : Génère le fichier GraphViz .dot
 7. **Options** : Parse les options de la ligne de commande
 
-## Format des logs Apache
 
-Les logs suivent le format Apache Combined Log :
-
-```
-IP - - [Date] "Method URL Protocol" Code Size "Referer" "UserAgent"
-```
-
-**Exemple :**
-```
-192.168.0.1 - - [08/Sep/2012:11:15:00 +0200] "GET /page2.html HTTP/1.1" 200 2000 "http://intranet-if.insa-lyon.fr/page1.html" "Mozilla/5.0"
 ```
 
 ## Format du graphe
@@ -173,31 +163,4 @@ digraph {
 }
 ```
 
-## Normes de codage
 
-Le code respecte le guide de style C++ INSA :
-- En-têtes de fichiers avec informations de copyright
-- Commentaires de méthodes avec "Mode d'emploi" et "Contrat"
-- Séparation claire entre interface (.h) et implémentation (.cpp)
-- Utilisation de la STL (std::vector, std::map, std::string, etc.)
-
-## Compilation avec C++11
-
-Le projet utilise C++11 pour bénéficier de fonctionnalités modernes :
-- Lambda functions
-- Range-based for loops
-- Auto keyword
-
-Pour compiler avec g++ :
-```bash
-g++ -std=c++11 -Wall -Wextra -pedantic *.cpp -o analog
-```
-
-## Auteurs
-
-Projet réalisé dans le cadre du TP C++ n°4 - Analyse de logs Apache
-INSA Lyon - Département IF
-
-## Date
-
-Janvier 2026
