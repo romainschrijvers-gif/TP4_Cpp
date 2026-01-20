@@ -22,7 +22,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-void Analyzer::Analyze(const std::vector<LogEntry> & entries)
+void Analyzer::Analyze(const vector<LogEntry> & entries)
 // Algorithme :
 // 1. Pour chaque entrée valide selon les filtres :
 //    - Incrémenter le hit count du document
@@ -66,7 +66,7 @@ void Analyzer::Analyze(const std::vector<LogEntry> & entries)
     }
 } //----- Fin de Analyze
 
-std::vector<Document*> Analyzer::GetTopDocuments(int n) const
+vector<Document*> Analyzer::GetTopDocuments(int n) const
 // Algorithme :
 // 1. Copier tous les documents dans un vecteur
 // 2. Trier le vecteur par ordre décroissant de hits
@@ -90,7 +90,7 @@ std::vector<Document*> Analyzer::GetTopDocuments(int n) const
     return docList;
 } //----- Fin de GetTopDocuments
 
-const std::map<Transition, int>& Analyzer::GetTransitions() const
+const map<Transition, int>& Analyzer::GetTransitions() const
 // Algorithme : Retourne la référence à transitions
 {
     return transitions;
@@ -108,7 +108,7 @@ void Analyzer::SetHourFilter(int h)
     hourFilter = h;
 } //----- Fin de SetHourFilter
 
-void Analyzer::SetBaseURL(const std::string & base)
+void Analyzer::SetBaseURL(const string & base)
 // Algorithme : Définit baseURL
 {
     baseURL = base;
@@ -156,7 +156,7 @@ bool Analyzer::ShouldIncludeEntry(const LogEntry & entry) const
     return true;
 } //----- Fin de ShouldIncludeEntry
 
-bool Analyzer::IsLocalReferer(const std::string & referer) const
+bool Analyzer::IsLocalReferer(const string & referer) const
 // Algorithme :
 // Vérifie si le referer commence par l'URL de base
 {

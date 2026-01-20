@@ -26,7 +26,7 @@ static const vector<string> STATIC_EXTENSIONS = {
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-std::string LogEntry::GetIP() const
+string LogEntry::GetIP() const
 // Algorithme : Retourne l'attribut ip
 {
     return ip;
@@ -38,19 +38,19 @@ DateTime LogEntry::GetDateTime() const
     return dateTime;
 } //----- Fin de GetDateTime
 
-std::string LogEntry::GetMethod() const
+string LogEntry::GetMethod() const
 // Algorithme : Retourne l'attribut method
 {
     return method;
 } //----- Fin de GetMethod
 
-std::string LogEntry::GetURL() const
+string LogEntry::GetURL() const
 // Algorithme : Retourne l'attribut url
 {
     return url;
 } //----- Fin de GetURL
 
-std::string LogEntry::GetProtocol() const
+string LogEntry::GetProtocol() const
 // Algorithme : Retourne l'attribut protocol
 {
     return protocol;
@@ -68,13 +68,13 @@ int LogEntry::GetSize() const
     return size;
 } //----- Fin de GetSize
 
-std::string LogEntry::GetReferer() const
+string LogEntry::GetReferer() const
 // Algorithme : Retourne l'attribut referer
 {
     return referer;
 } //----- Fin de GetReferer
 
-std::string LogEntry::GetUserAgent() const
+string LogEntry::GetUserAgent() const
 // Algorithme : Retourne l'attribut userAgent
 {
     return userAgent;
@@ -94,10 +94,10 @@ bool LogEntry::IsStaticResource() const
 } //----- Fin de IsStaticResource
 
 //-------------------------------------------- Constructeurs - destructeur
-LogEntry::LogEntry(const std::string & ipAddr, const DateTime & dt, 
-                   const std::string & meth, const std::string & urlStr,
-                   const std::string & proto, int code, int sz,
-                   const std::string & ref, const std::string & ua)
+LogEntry::LogEntry(const string & ipAddr, const DateTime & dt, 
+                   const string & meth, const string & urlStr,
+                   const string & proto, int code, int sz,
+                   const string & ref, const string & ua)
     : ip(ipAddr), dateTime(dt), method(meth), url(urlStr), protocol(proto),
       statusCode(code), size(sz), referer(ref), userAgent(ua)
 // Algorithme : Initialisation par liste d'initialisation

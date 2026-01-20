@@ -10,6 +10,7 @@
 #define GRAPHGENERATOR_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include <string>
 #include <map>
 #include <set>
@@ -17,7 +18,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef std::pair<std::string, std::string> Transition;
+typedef pair<string, string> Transition;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <GraphGenerator>
@@ -31,13 +32,13 @@ class GraphGenerator
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    bool GenerateGraph(const std::string & filename);
+    bool GenerateGraph(const string & filename);
     // Mode d'emploi :
     // Génère le fichier .dot avec le graphe
     // Retourne true si le fichier a été créé avec succès, false sinon
     // Contrat : filename doit être un chemin valide et accessible en écriture
     
-    void AddTransition(const std::string & source, const std::string & dest, int count);
+    void AddTransition(const string & source, const string & dest, int count);
     // Mode d'emploi :
     // Ajoute une transition au graphe avec son nombre d'occurrences
     // Contrat : count doit être > 0
@@ -57,14 +58,14 @@ public:
 
 protected:
 //----------------------------------------------------- Méthodes protégées
-    std::string EscapeQuotes(const std::string & str) const;
+    string EscapeQuotes(const string & str) const;
     // Mode d'emploi :
     // Échappe les guillemets dans une chaîne pour le format DOT
     // Contrat : Aucun
 
 //----------------------------------------------------- Attributs protégés
-    std::map<Transition, int> transitions;
-    std::set<std::string> nodes;
+    map<Transition, int> transitions;
+    set<string> nodes;
 };
 
 //-------------------------- Autres définitions dépendantes de <GraphGenerator>

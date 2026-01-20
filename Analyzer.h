@@ -10,6 +10,7 @@
 #define ANALYZER_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include <string>
 #include <map>
 #include <vector>
@@ -19,7 +20,7 @@
 //------------------------------------------------------------- Constantes
 
 //------------------------------------------------------------------ Types
-typedef std::pair<std::string, std::string> Transition;
+typedef pair<string, string> Transition;
 
 //------------------------------------------------------------------------
 // Rôle de la classe <Analyzer>
@@ -35,18 +36,18 @@ class Analyzer
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    void Analyze(const std::vector<LogEntry> & entries);
+    void Analyze(const vector<LogEntry> & entries);
     // Mode d'emploi :
     // Analyse la liste d'entrées de log et construit les statistiques
     // en appliquant les filtres configurés
     // Contrat : Aucun
     
-    std::vector<Document*> GetTopDocuments(int n) const;
+    vector<Document*> GetTopDocuments(int n) const;
     // Mode d'emploi :
     // Retourne les n documents les plus consultés
     // Contrat : n doit être positif
     
-    const std::map<Transition, int>& GetTransitions() const;
+    const map<Transition, int>& GetTransitions() const;
     // Mode d'emploi :
     // Retourne la map des transitions (source, dest) -> compteur
     // Contrat : Aucun
@@ -61,7 +62,7 @@ public:
     // Définit le filtre d'heure (0-23, -1 pour désactiver)
     // Contrat : h doit être entre -1 et 23
     
-    void SetBaseURL(const std::string & base);
+    void SetBaseURL(const string & base);
     // Mode d'emploi :
     // Définit l'URL de base pour détecter les referers locaux
     // Contrat : Aucun
@@ -86,17 +87,17 @@ protected:
     // Détermine si une entrée doit être incluse selon les filtres
     // Contrat : Aucun
     
-    bool IsLocalReferer(const std::string & referer) const;
+    bool IsLocalReferer(const string & referer) const;
     // Mode d'emploi :
     // Vérifie si le referer provient du site local
     // Contrat : Aucun
 
 //----------------------------------------------------- Attributs protégés
-    std::map<std::string, Document*> documents;
-    std::map<Transition, int> transitions;
+    map<string, Document*> documents;
+    map<Transition, int> transitions;
     bool excludeStatic;
     int hourFilter;
-    std::string baseURL;
+    string baseURL;
 };
 
 //-------------------------------- Autres définitions dépendantes de <Analyzer>

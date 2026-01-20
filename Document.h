@@ -10,6 +10,7 @@
 #define DOCUMENT_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include <string>
 
 //------------------------------------------------------------- Constantes
@@ -28,7 +29,7 @@ class Document
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    std::string GetURL() const;
+    string GetURL() const;
     // Mode d'emploi :
     // Retourne l'URL du document
     // Contrat : Aucun
@@ -51,7 +52,7 @@ public:
     // Contrat : Aucun
 
 //-------------------------------------------- Constructeurs - destructeur
-    Document(const std::string & urlStr);
+    Document(const string & urlStr);
     // Mode d'emploi :
     // Construit un document avec une URL donnée
     // Le compteur de hits est initialisé à 0
@@ -71,7 +72,7 @@ public:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-    std::string url;
+    string url;
     int hitCount;
 };
 

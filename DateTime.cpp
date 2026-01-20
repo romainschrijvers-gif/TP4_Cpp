@@ -28,7 +28,7 @@ int DateTime::GetHour() const
     return hour;
 } //----- Fin de GetHour
 
-std::string DateTime::ToString() const
+string DateTime::ToString() const
 // Algorithme : Formate la date/heure en chaîne
 {
     ostringstream oss;
@@ -38,7 +38,7 @@ std::string DateTime::ToString() const
 } //----- Fin de ToString
 
 //-------------------------------------------- Constructeurs - destructeur
-DateTime::DateTime(const std::string & dateTimeStr)
+DateTime::DateTime(const string & dateTimeStr)
 // Algorithme :
 // Parse la chaîne au format [08/Sep/2012:11:16:02 +0200]
 {

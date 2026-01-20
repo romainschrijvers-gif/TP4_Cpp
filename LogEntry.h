@@ -10,6 +10,7 @@
 #define LOGENTRY_H
 
 //--------------------------------------------------- Interfaces utilisées
+using namespace std;
 #include <string>
 #include "DateTime.h"
 
@@ -29,7 +30,7 @@ class LogEntry
 
 public:
 //----------------------------------------------------- Méthodes publiques
-    std::string GetIP() const;
+    string GetIP() const;
     // Mode d'emploi :
     // Retourne l'adresse IP du client
     // Contrat : Aucun
@@ -39,17 +40,17 @@ public:
     // Retourne l'objet DateTime de la requête
     // Contrat : Aucun
     
-    std::string GetMethod() const;
+    string GetMethod() const;
     // Mode d'emploi :
     // Retourne la méthode HTTP (GET, POST, etc.)
     // Contrat : Aucun
     
-    std::string GetURL() const;
+    string GetURL() const;
     // Mode d'emploi :
     // Retourne l'URL demandée
     // Contrat : Aucun
     
-    std::string GetProtocol() const;
+    string GetProtocol() const;
     // Mode d'emploi :
     // Retourne le protocole HTTP
     // Contrat : Aucun
@@ -64,12 +65,12 @@ public:
     // Retourne la taille de la réponse en octets
     // Contrat : Aucun
     
-    std::string GetReferer() const;
+    string GetReferer() const;
     // Mode d'emploi :
     // Retourne l'URL de provenance (referer)
     // Contrat : Aucun
     
-    std::string GetUserAgent() const;
+    string GetUserAgent() const;
     // Mode d'emploi :
     // Retourne le User Agent
     // Contrat : Aucun
@@ -81,10 +82,10 @@ public:
     // Contrat : Aucun
 
 //-------------------------------------------- Constructeurs - destructeur
-    LogEntry(const std::string & ipAddr, const DateTime & dt, 
-             const std::string & meth, const std::string & url,
-             const std::string & proto, int code, int sz,
-             const std::string & ref, const std::string & ua);
+    LogEntry(const string & ipAddr, const DateTime & dt, 
+             const string & meth, const string & url,
+             const string & proto, int code, int sz,
+             const string & ref, const string & ua);
     // Mode d'emploi :
     // Construit une entrée de log avec tous les paramètres
     // Contrat : Aucun
@@ -103,15 +104,15 @@ public:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-    std::string ip;
+    string ip;
     DateTime dateTime;
-    std::string method;
-    std::string url;
-    std::string protocol;
+    string method;
+    string url;
+    string protocol;
     int statusCode;
     int size;
-    std::string referer;
-    std::string userAgent;
+    string referer;
+    string userAgent;
 };
 
 //-------------------------------- Autres définitions dépendantes de <LogEntry>

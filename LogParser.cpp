@@ -23,7 +23,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-bool LogParser::ParseFile(const std::string & filename)
+bool LogParser::ParseFile(const string & filename)
 // Algorithme :
 // Ouvre le fichier, lit ligne par ligne, parse chaque ligne
 {
@@ -47,7 +47,7 @@ bool LogParser::ParseFile(const std::string & filename)
     return true;
 } //----- Fin de ParseFile
 
-const std::vector<LogEntry>& LogParser::GetEntries() const
+const vector<LogEntry>& LogParser::GetEntries() const
 // Algorithme : Retourne la référence à logEntries
 {
     return logEntries;
@@ -74,7 +74,7 @@ LogParser::~LogParser()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-LogEntry* LogParser::ParseLine(const std::string & line)
+LogEntry* LogParser::ParseLine(const string & line)
 // Algorithme :
 // Parse une ligne au format Apache Combined Log
 // Format : IP - - [Date] "Method URL Protocol" Code Size "Referer" "UserAgent"

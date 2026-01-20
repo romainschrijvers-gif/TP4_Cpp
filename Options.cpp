@@ -78,13 +78,13 @@ bool Options::ParseCommandLine(int argc, char* argv[])
     return true;
 } //----- Fin de ParseCommandLine
 
-std::string Options::GetLogFile() const
+string Options::GetLogFile() const
 // Algorithme : Retourne logFile
 {
     return logFile;
 } //----- Fin de GetLogFile
 
-std::string Options::GetGraphFile() const
+string Options::GetGraphFile() const
 // Algorithme : Retourne graphFile
 {
     return graphFile;

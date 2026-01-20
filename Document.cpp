@@ -21,7 +21,7 @@ using namespace std;
 //----------------------------------------------------------------- PUBLIC
 
 //----------------------------------------------------- Méthodes publiques
-std::string Document::GetURL() const
+string Document::GetURL() const
 // Algorithme : Retourne l'attribut url
 {
     return url;
@@ -48,7 +48,7 @@ bool Document::operator<(const Document & other) const
 } //----- Fin de operator<
 
 //-------------------------------------------- Constructeurs - destructeur
-Document::Document(const std::string & urlStr)
+Document::Document(const string & urlStr)
     : url(urlStr), hitCount(0)
 // Algorithme : Initialisation avec URL, hitCount à 0
 {

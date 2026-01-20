@@ -59,8 +59,8 @@ bool GraphGenerator::GenerateGraph(const std::string & filename)
     return true;
 } //----- Fin de GenerateGraph
 
-void GraphGenerator::AddTransition(const std::string & source, 
-                                    const std::string & dest, int count)
+void GraphGenerator::AddTransition(const string & source, 
+                                    const string & dest, int count)
 // Algorithme :
 // Ajoute la transition et enregistre les nœuds source et destination
 {
@@ -90,7 +90,7 @@ GraphGenerator::~GraphGenerator()
 //------------------------------------------------------------------ PRIVE
 
 //----------------------------------------------------- Méthodes protégées
-std::string GraphGenerator::EscapeQuotes(const std::string & str) const
+std::string GraphGenerator::EscapeQuotes(const string & str) const
 // Algorithme :
 // Remplace les guillemets par des guillemets échappés
 {
