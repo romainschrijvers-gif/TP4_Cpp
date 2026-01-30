@@ -82,7 +82,73 @@ make test-graph
 
 ## Tests
 
-Le Makefile fournit plusieurs cibles de test :
+### Framework de test automatique
+
+Un framework de test complet est fourni dans le répertoire `Tests/`. Ce framework permet de valider automatiquement le bon fonctionnement du programme en exécutant des jeux de tests et en vérifiant :
+- Le code de retour du programme
+- La sortie standard (stdout)
+- Les fichiers générés
+
+#### Structure des tests
+
+Chaque test se trouve dans un répertoire `Tests/TestAnalogN/` et contient :
+
+- **`description`** : Description textuelle du test
+- **`run`** : Commande à exécuter (relative à la racine du projet)
+- **`returncode`** : Code de retour attendu (optionnel)
+- **`std.out`** : Sortie standard attendue (optionnel)
+- **`*.outfile`** : Fichiers à générer (optionnel)
+- **`test.log`** : Fichier de log de test
+
+#### Tests disponibles
+
+| Test | Description | Options |
+|------|-------------|---------|
+| **TestAnalog1** | Exécution basique | Aucune |
+| **TestAnalog2** | Exclusion ressources statiques | `-e` |
+| **TestAnalog3** | Filtre par heure | `-t 14` |
+| **TestAnalog4** | Génération fichier GraphViz | `-g graph.dot` |
+| **TestAnalog5** | Erreur fichier inexistant | Code retour 1 |
+| **TestAnalog6** | Erreur heure invalide | `-t 25` |
+| **TestAnalog7** | Combinaison d'options | `-e -t 10` |
+| **TestAnalog8** | Toutes options combinées | `-g -e -t 9` |
+| **TestAnalog9** | Aucun argument | Code retour 1 |
+| **TestAnalog10** | Fichier log vide | Aucune |
+
+#### Exécuter les tests
+
+**Prérequis :**
+```bash
+cd Tests
+chmod +x test.sh mktest.sh
+```
+
+**Exécuter un test individual :**
+```bash
+cd Tests
+./test.sh TestAnalog1
+```
+
+**Exécuter tous les tests :**
+```bash
+cd Tests
+./mktest.sh
+```
+
+Le script `mktest.sh` exécute tous les tests et affiche un résumé :
+```
+Passed tests     : 8
+Failed tests     : 2
+Misformed tests  : 0
+-----------------------
+Total            : 10
+```
+
+Les résultats sont également enregistrés dans `results.csv` pour analyse ultérieure.
+
+### Tests avec Makefile
+
+Le Makefile fournit également plusieurs cibles de test :
 
 ```bash
 make test-mini      # Test avec le petit fichier d'exemple

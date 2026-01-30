@@ -10,7 +10,6 @@
 #define DATETIME_H
 
 //--------------------------------------------------- Interfaces utilisées
-using namespace std;
 #include <string>
 
 //------------------------------------------------------------- Constantes
@@ -34,13 +33,13 @@ public:
     // Retourne l'heure (0-23)
     // Contrat : Aucun
     
-    string ToString() const;
+    std::string ToString() const;
     // Mode d'emploi :
     // Retourne la date/heure sous forme de chaîne formatée
     // Contrat : Aucun
 
 //-------------------------------------------- Constructeurs - destructeur
-    DateTime(const string & dateTimeStr);
+    DateTime(const std::string & dateTimeStr);
     // Mode d'emploi :
     // Construit un objet DateTime à partir d'une chaîne au format
     // [08/Sep/2012:11:16:02 +0200]
@@ -61,12 +60,12 @@ public:
 protected:
 //----------------------------------------------------- Attributs protégés
     int day;
-    string month;
+    std::string month;
     int year;
     int hour;
     int minute;
     int second;
-    string timezone;
+    std::string timezone;
 };
 
 //-------------------------------- Autres définitions dépendantes de <DateTime>

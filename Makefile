@@ -44,7 +44,7 @@ mrproper: clean
 
 # Cible pour tester avec le petit exemple
 test-mini: $(EXEC)
-	./$(EXEC) exemple-mini-non-exhaustif.txt
+	./$(EXEC) court.log
 
 # Cible pour tester avec le gros fichier
 test-full: $(EXEC)
@@ -52,7 +52,7 @@ test-full: $(EXEC)
 
 # Cible pour tester avec génération de graphe
 test-graph: $(EXEC)
-	./$(EXEC) -g graph.dot exemple-mini-non-exhaustif.txt
+	./$(EXEC) -g graph.dot court.log
 	@if command -v dot > /dev/null; then \
 		dot -Tpng graph.dot -o graph.png; \
 		echo "Graphe généré : graph.png"; \
@@ -63,10 +63,10 @@ test-graph: $(EXEC)
 # Cible pour tester avec options
 test-options: $(EXEC)
 	@echo "=== Test sans options ==="
-	./$(EXEC) exemple-mini-non-exhaustif.txt
+	./$(EXEC) court.log
 	@echo ""
 	@echo "=== Test avec exclusion ressources statiques ==="
-	./$(EXEC) -e exemple-mini-non-exhaustif.txt
+	./$(EXEC) -e court.log
 	@echo ""
 	@echo "=== Test avec filtre heure 11 ==="
 	./$(EXEC) -t 11 anonyme.log

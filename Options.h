@@ -10,7 +10,6 @@
 #define OPTIONS_H
 
 //--------------------------------------------------- Interfaces utilisées
-using namespace std;
 #include <string>
 
 //------------------------------------------------------------- Constantes
@@ -36,12 +35,12 @@ public:
     // Retourne true si les arguments sont valides, false sinon
     // Contrat : argc et argv doivent provenir du main
     
-    string GetLogFile() const;
+    std::string GetLogFile() const;
     // Mode d'emploi :
     // Retourne le nom du fichier de log
     // Contrat : ParseCommandLine doit avoir été appelé avec succès
     
-    string GetGraphFile() const;
+    std::string GetGraphFile() const;
     // Mode d'emploi :
     // Retourne le nom du fichier graphe (vide si non spécifié)
     // Contrat : ParseCommandLine doit avoir été appelé avec succès
@@ -81,8 +80,8 @@ public:
 
 protected:
 //----------------------------------------------------- Attributs protégés
-    string logFile;
-    string graphFile;
+    std::string logFile;
+    std::string graphFile;
     bool excludeStatic;
     int hourFilter;
     bool generateGraph;
