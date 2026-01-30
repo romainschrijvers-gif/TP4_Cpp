@@ -1,0 +1,2 @@
+Test erreur : Option -t avec heure invalide (hors 0-23)
+Vérifie que le programme refuse une heure invalide

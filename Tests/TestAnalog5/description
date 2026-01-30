@@ -1,0 +1,2 @@
+Test erreur : Fichier de log inexistant
+Vérifie que le programme retourne une erreur quand le fichier n'existe pas

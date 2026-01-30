@@ -1,0 +1,2 @@
+Test combinaison options : -e et -t ensemble
+Vérifie le fonctionnement combiné de l'exclusion des ressources statiques et du filtre horaire

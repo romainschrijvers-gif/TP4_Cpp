@@ -1,0 +1,2 @@
+Test option -e : Exclusion des ressources statiques (images, CSS, JS)
+Vérifie que les fichiers .css, .js, .png, etc. sont exclus de l'analyse

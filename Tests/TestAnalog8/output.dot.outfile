@@ -1,0 +1,9 @@
+digraph {
+"/";
+"/accueil.html";
+"/contact.html";
+"/info.html";
+"/" -> "/accueil.html" [label="1"];
+"/accueil.html" -> "/contact.html" [label="1"];
+"/contact.html" -> "/info.html" [label="1"];
+}

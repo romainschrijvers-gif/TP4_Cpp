@@ -1,0 +1,2 @@
+Test option -g : Génération du fichier GraphViz (.dot)
+Vérifie que le fichier .dot est bien créé avec le graphe de navigation
