@@ -1,17 +1,11 @@
 Test ID;Return code validation;Out result;StdErr result;File creation result;Global result
-Test1;2;2;2;1;1
-Test2;2;1;2;2;1
-Test3;1;2;2;2;1
-Test5;2;0;2;2;0
-Test6;2;2;2;1;1
-Test7;2;2;1;2;1
-TestAnalog1;1;2;2;2;1
-TestAnalog10;1;2;2;2;1
-TestAnalog2;1;2;2;2;1
-TestAnalog3;1;2;2;2;1
-TestAnalog4;1;2;2;1;1
-TestAnalog5;1;2;2;2;1
-TestAnalog6;1;2;2;2;1
-TestAnalog7;1;2;2;2;1
-TestAnalog8;1;2;2;1;1
-TestAnalog9;1;2;2;2;1
+Test_ExclusionStatiques;1;2;2;2;1
+Test_ExecutionBasique;1;2;2;2;1
+Test_FichierInexistant;1;2;2;2;1
+Test_FiltreHoraire;1;2;2;2;1
+Test_GenerationGraphe;1;2;2;1;1
+Test_HeureInvalide;1;2;2;2;1
+Test_LogVide;1;2;2;2;1
+Test_OptionsCombinees;1;2;2;2;1
+Test_SansArguments;1;2;2;2;1
+Test_ToutesOptions;1;2;2;1;1

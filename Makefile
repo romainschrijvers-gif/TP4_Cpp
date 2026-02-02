@@ -3,36 +3,45 @@
 
 # Compilateur et options
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -Wextra -pedantic -g
+CXXFLAGS = -std=c++11 -Wall -Wextra -pedantic -g -Isrc
 LDFLAGS =
 
+# Répertoires
+SRCDIR = src
+BINDIR = bin
+OBJDIR = $(BINDIR)
+
 # Nom de l'exécutable
-EXEC = analog
+EXEC = $(BINDIR)/analog
 
 # Fichiers sources et objets
 SOURCES = analog.cpp DateTime.cpp LogEntry.cpp Document.cpp LogParser.cpp Analyzer.cpp GraphGenerator.cpp Options.cpp
-OBJECTS = $(SOURCES:.cpp=.o)
+OBJECTS = $(addprefix $(OBJDIR)/, $(SOURCES:.cpp=.o))
 
 # Cible par défaut
-all: $(EXEC)
+all: $(BINDIR) $(EXEC)
+
+# Création du répertoire bin
+$(BINDIR):
+	mkdir -p $(BINDIR)
 
 # Règle de compilation de l'exécutable
 $(EXEC): $(OBJECTS)
 	$(CXX) $(LDFLAGS) -o $@ $^
 
 # Règle de compilation des fichiers objets
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $<
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(BINDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Dépendances des fichiers objets
-analog.o: analog.cpp Options.h LogParser.h Analyzer.h GraphGenerator.h
-DateTime.o: DateTime.cpp DateTime.h
-LogEntry.o: LogEntry.cpp LogEntry.h DateTime.h
-Document.o: Document.cpp Document.h
-LogParser.o: LogParser.cpp LogParser.h LogEntry.h DateTime.h
-Analyzer.o: Analyzer.cpp Analyzer.h LogEntry.h Document.h
-GraphGenerator.o: GraphGenerator.cpp GraphGenerator.h
-Options.o: Options.cpp Options.h
+$(OBJDIR)/analog.o: $(SRCDIR)/analog.cpp $(SRCDIR)/Options.h $(SRCDIR)/LogParser.h $(SRCDIR)/Analyzer.h $(SRCDIR)/GraphGenerator.h
+$(OBJDIR)/DateTime.o: $(SRCDIR)/DateTime.cpp $(SRCDIR)/DateTime.h
+$(OBJDIR)/LogEntry.o: $(SRCDIR)/LogEntry.cpp $(SRCDIR)/LogEntry.h $(SRCDIR)/DateTime.h
+$(OBJDIR)/Document.o: $(SRCDIR)/Document.cpp $(SRCDIR)/Document.h
+$(OBJDIR)/LogParser.o: $(SRCDIR)/LogParser.cpp $(SRCDIR)/LogParser.h $(SRCDIR)/LogEntry.h $(SRCDIR)/DateTime.h
+$(OBJDIR)/Analyzer.o: $(SRCDIR)/Analyzer.cpp $(SRCDIR)/Analyzer.h $(SRCDIR)/LogEntry.h $(SRCDIR)/Document.h
+$(OBJDIR)/GraphGenerator.o: $(SRCDIR)/GraphGenerator.cpp $(SRCDIR)/GraphGenerator.h
+$(OBJDIR)/Options.o: $(SRCDIR)/Options.cpp $(SRCDIR)/Options.h
 
 # Règle de nettoyage
 clean:
@@ -40,52 +49,20 @@ clean:
 
 # Règle pour nettoyer tout (incluant les fichiers générés)
 mrproper: clean
-	rm -f *.dot *.png
-
-# Cible pour tester avec le petit exemple
-test-mini: $(EXEC)
-	./$(EXEC) court.log
-
-# Cible pour tester avec le gros fichier
-test-full: $(EXEC)
-	./$(EXEC) anonyme.log
-
-# Cible pour tester avec génération de graphe
-test-graph: $(EXEC)
-	./$(EXEC) -g graph.dot court.log
-	@if command -v dot > /dev/null; then \
-		dot -Tpng graph.dot -o graph.png; \
-		echo "Graphe généré : graph.png"; \
-	else \
-		echo "GraphViz (dot) n'est pas installé, impossible de générer l'image"; \
-	fi
-
-# Cible pour tester avec options
-test-options: $(EXEC)
-	@echo "=== Test sans options ==="
-	./$(EXEC) court.log
-	@echo ""
-	@echo "=== Test avec exclusion ressources statiques ==="
-	./$(EXEC) -e court.log
-	@echo ""
-	@echo "=== Test avec filtre heure 11 ==="
-	./$(EXEC) -t 11 anonyme.log
-	@echo ""
-	@echo "=== Test avec toutes les options ==="
-	./$(EXEC) -g graph-complet.dot -e -t 11 anonyme.log
+	rm -rf $(BINDIR) *.dot *.png
 
 # Aide
 help:
 	@echo "Makefile pour le projet analog"
 	@echo ""
 	@echo "Cibles disponibles :"
-	@echo "  all           : Compile le projet (défaut)"
-	@echo "  clean         : Supprime les fichiers objets et l'exécutable"
-	@echo "  mrproper      : Nettoyage complet (clean + fichiers générés)"
-	@echo "  test-mini     : Test avec le petit fichier d'exemple"
-	@echo "  test-full     : Test avec le fichier complet anonyme.log"
-	@echo "  test-graph    : Test avec génération de graphe"
-	@echo "  test-options  : Test de toutes les options"
-	@echo "  help          : Affiche cette aide"
+	@echo "  all       : Compile le projet (défaut)"
+	@echo "  clean     : Supprime les fichiers objets et l'exécutable"
+	@echo "  mrproper  : Nettoyage complet (clean + bin/ + fichiers .dot/.png)"
+	@echo "  help      : Affiche cette aide"
+	@echo ""
+	@echo "Tests :"
+	@echo "  cd Tests && ./mktest.sh              : Exécute tous les tests"
+	@echo "  cd Tests && ./test.sh <TestName>     : Exécute un test spécifique"
 
-.PHONY: all clean mrproper test-mini test-full test-graph test-options help
+.PHONY: all clean mrproper help

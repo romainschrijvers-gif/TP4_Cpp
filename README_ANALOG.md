@@ -16,13 +16,13 @@ Le projet utilise un Makefile. Pour compiler :
 make
 ```
 
-Cela génère l'exécutable `analog`.
+Cela génère l'exécutable `bin/analog`.
 
 ### Nettoyage
 
 ```bash
 make clean      # Supprime les fichiers objets et l'exécutable
-make mrproper   # Nettoyage complet (incluant les fichiers .dot et .png générés)
+make mrproper   # Nettoyage complet (incluant bin/ et les fichiers .dot/.png générés)
 ```
 
 ## Utilisation
@@ -30,7 +30,7 @@ make mrproper   # Nettoyage complet (incluant les fichiers .dot et .png génér�
 ### Syntaxe
 
 ```bash
-./analog [options] fichier.log
+./bin/analog [options] fichier.log
 ```
 
 ### Options
@@ -43,27 +43,27 @@ make mrproper   # Nettoyage complet (incluant les fichiers .dot et .png génér�
 
 **Analyse simple :**
 ```bash
-./analog anonyme.log
+./bin/analog anonyme.log
 ```
 
 **Analyse avec exclusion des ressources statiques :**
 ```bash
-./analog -e anonyme.log
+./bin/analog -e anonyme.log
 ```
 
 **Génération d'un graphe de navigation :**
 ```bash
-./analog -g graph.dot anonyme.log
+./bin/analog -g graph.dot anonyme.log
 ```
 
 **Filtrage par heure (logs de 11h à 11h59) :**
 ```bash
-./analog -t 11 anonyme.log
+./bin/analog -t 11 anonyme.log
 ```
 
 **Toutes les options combinées :**
 ```bash
-./analog -g graph.dot -e -t 11 anonyme.log
+./bin/analog -g graph.dot -e -t 11 anonyme.log
 ```
 
 ## Génération de l'image du graphe
@@ -104,16 +104,16 @@ Chaque test se trouve dans un répertoire `Tests/TestAnalogN/` et contient :
 
 | Test | Description | Options |
 |------|-------------|---------|
-| **TestAnalog1** | Exécution basique | Aucune |
-| **TestAnalog2** | Exclusion ressources statiques | `-e` |
-| **TestAnalog3** | Filtre par heure | `-t 14` |
-| **TestAnalog4** | Génération fichier GraphViz | `-g graph.dot` |
-| **TestAnalog5** | Erreur fichier inexistant | Code retour 1 |
-| **TestAnalog6** | Erreur heure invalide | `-t 25` |
-| **TestAnalog7** | Combinaison d'options | `-e -t 10` |
-| **TestAnalog8** | Toutes options combinées | `-g -e -t 9` |
-| **TestAnalog9** | Aucun argument | Code retour 1 |
-| **TestAnalog10** | Fichier log vide | Aucune |
+| **Test_ExecutionBasique** | Exécution basique sans options | Aucune |
+| **Test_ExclusionStatiques** | Exclusion des ressources statiques | `-e` |
+| **Test_FiltreHoraire** | Filtre par heure | `-t 14` |
+| **Test_GenerationGraphe** | Génération fichier GraphViz | `-g graph.dot` |
+| **Test_FichierInexistant** | Erreur : fichier inexistant | Code retour 1 |
+| **Test_HeureInvalide** | Erreur : heure invalide | `-t 25` |
+| **Test_OptionsCombinees** | Combinaison d'options | `-e -t 10` |
+| **Test_ToutesOptions** | Toutes options combinées | `-g -e -t 9` |
+| **Test_SansArguments** | Erreur : aucun argument | Code retour 1 |
+| **Test_LogVide** | Fichier log vide | Aucune |
 
 #### Exécuter les tests
 
@@ -123,10 +123,10 @@ cd Tests
 chmod +x test.sh mktest.sh
 ```
 
-**Exécuter un test individual :**
+**Exécuter un test individuel :**
 ```bash
 cd Tests
-./test.sh TestAnalog1
+./test.sh Test_ExecutionBasique
 ```
 
 **Exécuter tous les tests :**
@@ -146,32 +146,30 @@ Total            : 10
 
 Les résultats sont également enregistrés dans `results.csv` pour analyse ultérieure.
 
-### Tests avec Makefile
-
-Le Makefile fournit également plusieurs cibles de test :
-
-```bash
-make test-mini      # Test avec le petit fichier d'exemple
-make test-full      # Test avec le fichier complet anonyme.log
-make test-graph     # Test avec génération de graphe
-make test-options   # Test de toutes les options
-```
-
 ## Structure du projet
 
 ```
-TP4_Cpp/
-├── analog.cpp              # Programme principal
-├── DateTime.h/.cpp         # Gestion de date/heure
-├── LogEntry.h/.cpp         # Représentation d'une ligne de log
-├── Document.h/.cpp         # Représentation d'un document web
-├── LogParser.h/.cpp        # Parsing du fichier de logs
-├── Analyzer.h/.cpp         # Analyse et statistiques
-├── GraphGenerator.h/.cpp   # Génération du graphe GraphViz
-├── Options.h/.cpp          # Gestion des options CLI
-├── Makefile                # Script de compilation
-├── exemple-mini-non-exhaustif.txt  # Fichier de test
-└── anonyme.log             # Fichier de logs complet
+Avancé_TP4/
+├── src/                       # Code source
+│   ├── analog.cpp              # Programme principal
+│   ├── DateTime.h/.cpp         # Gestion de date/heure
+│   ├── LogEntry.h/.cpp         # Représentation d'une ligne de log
+│   ├── Document.h/.cpp         # Représentation d'un document web
+│   ├── LogParser.h/.cpp        # Parsing du fichier de logs
+│   ├── Analyzer.h/.cpp         # Analyse et statistiques
+│   ├── GraphGenerator.h/.cpp   # Génération du graphe GraphViz
+│   └── Options.h/.cpp          # Gestion des options CLI
+├── bin/                       # Exécutable et fichiers objets (générés)
+│   ├── analog                  # Exécutable
+│   └── *.o                     # Fichiers objets
+├── Tests/                     # Tests automatiques
+│   ├── Test_ExecutionBasique/
+│   ├── Test_ExclusionStatiques/
+│   ├── Test_FiltreHoraire/
+│   └── ... (10 tests au total)
+├── Makefile                 # Script de compilation
+├── README_ANALOG.md         # Ce fichier
+└── anonyme.log              # (Optionnel) Fichier de logs complet pour tests
 ```
 
 ## Architecture
