@@ -68,16 +68,10 @@ make mrproper   # Nettoyage complet (incluant bin/ et les fichiers .dot/.png gé
 
 ## Génération de l'image du graphe
 
-Si GraphViz est installé, vous pouvez générer une image PNG du graphe :
+On peut générer une image PNG du graphe avec la commande suivante :
 
 ```bash
 dot -Tpng graph.dot -o graph.png
-```
-
-Ou utiliser la cible Make :
-
-```bash
-make test-graph
 ```
 
 ## Tests
@@ -168,8 +162,7 @@ Avancé_TP4/
 │   ├── Test_FiltreHoraire/
 │   └── ... (10 tests au total)
 ├── Makefile                 # Script de compilation
-├── README_ANALOG.md         # Ce fichier
-└── anonyme.log              # (Optionnel) Fichier de logs complet pour tests
+└── README_ANALOG.md         # Ce fichier
 ```
 
 ## Architecture
